@@ -1,105 +1,129 @@
-# Batch Image Resizer with Pixelated Scaling
+# 🖼️ Batch Image Resizer with Pixelated Scaling
 
-This Python program batch-resizes images within a directory tree while preserving their pixelated appearance by avoiding anti-aliasing. It uses the [Pillow (PIL)](https://pillow.readthedocs.io/) library to upscale `.png` and `.jpg` images by a user-defined multiplier. The resized images are saved in a corresponding directory structure under a specified output directory.
+A Python utility to batch-resize images while preserving their pixelated charm. This tool recursively scans an input folder, resizes `.png` and `.jpg` images using nearest-neighbor scaling, and saves the output with the same folder structure elsewhere.
 
-## Features
+Perfect for resizing retro sprites, pixel art, or any images where sharp pixel edges matter.
 
-- Recursively processes all subdirectories within the input directory.
-- Resizes images using the nearest-neighbor interpolation method (`Image.NEAREST`) to maintain pixelation.
-- Outputs resized images into a new directory while preserving the input directory's structure.
+---
 
-## Requirements
+## ✨ Features
 
-- Python 3.6 or higher
-- Pillow library
+* 🔁 Recursively processes all subfolders
+* 🧱 Uses `Image.NEAREST` (no anti-aliasing) to preserve pixelated appearance
+* 🗃️ Outputs to a parallel directory structure
+* 🖼️ Supports `.png` and `.jpg` formats
 
-To install Pillow, run:
+---
+
+## 📦 Requirements
+
+* Python 3.6+
+* Pillow (Python Imaging Library)
+
+Install it with:
 
 ```bash
-pip install Pillow
+pip install pillow
 ```
 
-## Usage
+---
 
-1. Place your images into a `sprites` directory (or modify the script to use a different directory).
-2. Adjust the `new_size_multiplier` variable in the script to set the resizing factor. For example: `new_size_multiplier = 10` will enlarge the images by 10 times their original dimensions.
-3. Run the script: `python resizer.py`
-4. The resized images will be saved in the `resized_sprites` directory (or whichever output directory you define).
+## 🚀 How to Use
 
-## Directory Structure
+1. Place your original images inside a folder, e.g. `sprites/`
+2. Open `resizer.py` and adjust these variables:
 
-Before running the script:
+```python
+input_dir = "sprites"             # Folder containing images
+output_dir = "resized_sprites"    # Folder to save resized images
+new_size_multiplier = 10          # Resize scale (e.g. 10x larger)
+```
+
+3. Run the script:
+
+```bash
+python resizer.py
+```
+
+---
+
+## 🧩 Example Directory Structure
+
+**Before:**
+
 ```
 project/
-│
 ├── sprites/
-│   ├── image1.png
-│   ├── image2.jpg
-│   ├── subdir/
-│       ├── image3.png
-│
+│   ├── hero.png
+│   └── icons/
+│       └── coin.jpg
 └── resizer.py
 ```
 
-After running the script:
+**After:**
+
 ```
 project/
-│
-├── sprites/
-│   ├── image1.png
-│   ├── image2.jpg
-│   ├── subdir/
-│       ├── image3.png
-│
-├── resized_sprites/
-│   ├── image1.png
-│   ├── image2.jpg
-│   ├── subdir/
-│       ├── image3.png
-│
+├── sprites/           # original images remain untouched
+├── resized_sprites/   # resized versions (same structure)
+│   ├── hero.png
+│   └── icons/
+│       └── coin.jpg
 └── resizer.py
 ```
 
-# Configuration
+---
 
-## Input Directory
-Set the `input_dir` variable to the directory path containing your images. By default, it is:
-`input_dir = "sprites"`
+## 🛠 Configuration
 
-## Output Directory
-Set the `output_dir` variable to the desired path for saving resized images. By default, it is:
-`output_dir = "resized_sprites"`
+| Variable              | Description                                        |
+| --------------------- | -------------------------------------------------- |
+| `input_dir`           | Folder with original images                        |
+| `output_dir`          | Folder to save resized copies                      |
+| `new_size_multiplier` | Factor to scale up each image (e.g. 10 = 10x size) |
 
-## Resizing Multiplier
-Set the `new_size_multiplier` variable to the desired scale factor. For example:
-`new_size_multiplier = 10`
+---
 
-# How It Works
+## ⚙️ How It Works
 
-1. The script traverses the input directory tree using `os.walk()`.
-2. For each image file (`.png` or `.jpg`), it opens the image using Pillow's `Image.open()`.
-3. The script resizes the image using the nearest-neighbor interpolation method to preserve pixelation.
-4. The resized image is saved to the corresponding subdirectory in the output directory.
+1. Traverses all folders using `os.walk()`
+2. Filters image files by `.png` and `.jpg`
+3. Opens them with Pillow’s `Image.open()`
+4. Resizes with nearest-neighbor scaling to maintain pixel sharpness
+5. Saves output in mirrored subdirectories
 
-## Error Handling
+---
 
-If any error occurs during image processing, the script will display the filename and the error message in the terminal.
+## ❗ Error Handling
 
-## Example Output
+If any image fails to process, the script prints the filename and error so you can debug without halting the batch.
 
-When processing `image1.png` (100x100) with `new_size_multiplier = 10`, the output will be:
-- Original dimensions: 100x100
-- Resized dimensions: 1000x1000
-- Resized image: Saved in `resized_sprites/image1.png`
+---
 
-## License
+## 📏 Example Output
 
-This project is open-source and available under the MIT License.
+With `new_size_multiplier = 10`, a 100×100 image becomes 1000×1000:
 
-## Author
+```
+Original: hero.png (100x100)
+Resized:  hero.png (1000x1000)
+Saved to: resized_sprites/hero.png
+```
 
-Created by David Tru Tran.
+---
 
-#  Acknowledgments
+## 📌 License
 
-Thanks to the Pillow library for making image processing simple and efficient!
+MIT License — free to use, modify, and distribute.
+
+---
+
+## 🧑‍💻 Author
+
+Created by David Tru Tran. Optimized for simplicity and sprite-perfect scaling.
+
+---
+
+## 🧠 Acknowledgments
+
+Thanks to the Pillow library for making image processing fun and flexible!
