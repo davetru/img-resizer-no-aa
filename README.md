@@ -120,7 +120,7 @@ MIT License — free to use, modify, and distribute.
 
 ## 🧑‍💻 Author
 
-Created by David Tru Tran. Optimized for simplicity and sprite-perfect scaling.
+Created by Dave Tran. Optimized for simplicity and sprite-perfect scaling.
 
 ---
 
